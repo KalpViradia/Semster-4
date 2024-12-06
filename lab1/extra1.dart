@@ -1,23 +1,27 @@
 import 'dart:io';
+import 'dart:math';
 
 void main() {
   print("Enter a number: ");
   int n = int.parse(stdin.readLineSync()!);
+  int n1 = n;
+  int n2 = n;
+  int digit = 0;
+  double sum = 0;
 
-  if(n%5 == 0) {
-    n = (n/5).toInt();
+  while(n1 != 0) {
+    digit++;
+    n1 = (n1/10).toInt();
   }
-  if(n%3 == 0) {
-    n = (n/3).toInt();
-  }
-  if(n%2 == 0) {
-    n = (n/2).toInt();
+  for(int i=0; i<digit; i++) {
+    sum += pow((n2%10), digit);
+    n2 = (n2/10).toInt();
   }
 
-  if(n == 1) {
-    print("The number is a ugly number.");
+  if(sum == n) {
+    print("The number is a armstrong number.");
   }
   else {
-    print("The number is not a ugly number.");
+    print("The number is not a armstrong number.");
   }
 }
