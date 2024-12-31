@@ -6,7 +6,6 @@ db.Student.updateOne({name:'John'},{$set:{age:31}})
 2. Update the city of all students from 'New York' to 'New Jersey'.
 db.Student.updateMany({city:'New York'},{$set:{city:'New Jersey'}})
 
-
 3. Set isActive to false for every student older than 35.
 db.Student.updateMany({age:{$gt:35}},{$set:{isActive:false}})
 
@@ -30,7 +29,6 @@ db.Student.updateOne({name:'Nick'},{$set:{isActive:true}})
 
 10. Update all documents to add a new field country with the value 'USA'.
 db.Student.updateMany({},{$set:{country:'USA'}})
-
 
 11. Update 'David's city to 'Orlando'.
 db.Student.updateOne({name:'David'},{$set:{city:'Orlando'}})
@@ -68,9 +66,8 @@ db.Student.deleteOne({name:"Olivia"})
 22. Delete all the students whose age is below 25.
 db.Student.deleteMany({age:{$lt:25}})
 
-
 23. Delete the first student whose isActive field is true.
-db.students.deleteOne({isActive:true})
+db.student.deleteOne({isActive:true})
 
 24. Delete all students from 'Los Angeles'.
 db.Student.deleteMany({city:"Los Angeles"})
@@ -88,7 +85,7 @@ db.Student.updateOne({name:"John"},{$rename:{name:"FullName"}})
 db.Student.updateMany({},{$rename:{isActive:"status"}})
 
 29. Rename age to yearsOld for everyone from 'San Francisco' student only.
-db.students.updateMany({city:"San Francisco"},{$rename:{age:"yearsOld"}})
+db.student.updateMany({city:"San Francisco"},{$rename:{age:"yearsOld"}})
 
 30. Create a Capped Collection named “Employee” as per follows:
 a. Ecode and Ename are compulsory fields
