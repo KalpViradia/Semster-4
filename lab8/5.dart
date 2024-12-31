@@ -26,6 +26,8 @@ class _DiceRollScreenState extends State<DiceRollScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String diceImage = 'assets/images/dice$diceNumber.png';
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Roll Dice App'),
@@ -34,6 +36,8 @@ class _DiceRollScreenState extends State<DiceRollScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(diceImage, width: 150, height: 150),
+            SizedBox(height: 20),
             Text(
               'Roll Result: $diceNumber',
               style: TextStyle(
