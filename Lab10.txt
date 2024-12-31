@@ -96,7 +96,19 @@ Insert following documents into above “Employee” collection.
 {"Ecode ": 3, "Ename": "Tom", "age": 35}
 {"Ecode ": 4, "Ename": "Lucy", "age": 28, "city": "San Francisco", "isActive": true}
 {"Ename": "Dino"}
-db.createCollection("Employee",{capped:true,size:100000,max:1000})
+db.createCollection("Employee",{
+capped:true,
+size:5120,
+max:100,
+validator:{
+$jsonSchema:{
+bsonType:"object",
+required:["Ecode","Ename"],
+properties:{
+Ecode:{bsonType:"int"},
+Ename:{bsonType:"string"},
+Age:{bsonType:"int"},
+City:{bsonType:"string"}}}}})
 db.Employee.insertMany([
     { Ecode: 1, Ename: "John", EID: 1 },
     { Ecode: 2, Ename: "Jane", age: 25, city: "Los Angeles", EID: 2 },
