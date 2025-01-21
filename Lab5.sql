@@ -15,12 +15,11 @@ CREATE TABLE PersonLog (
  PersonName VARCHAR(250) NOT NULL,
  Operation VARCHAR(50) NOT NULL,
  UpdateDate DATETIME NOT NULL,
- FOREIGN KEY (PersonID) REFERENCES PersonInfo(PersonID) ON DELETE CASCADE
 );
 
 --From the above given tables perform the following queries:
---Part ñ A
---1. Create a trigger that fires on INSERT, UPDATE and DELETE operation on the PersonInfo table to display a message ìRecord is Affected.î
+--Part ‚Äì A
+--1. Create a trigger that fires on INSERT, UPDATE and DELETE operation on the PersonInfo table to display a message ‚ÄúRecord is Affected.‚Äù
 CREATE TRIGGER tr_DisplayMessage
 ON PersonInfo
 AFTER INSERT, UPDATE, DELETE
@@ -142,7 +141,7 @@ BEGIN
     END
 END;
 
---Part ñ B
+--Part ‚Äì B
 --7. Create a trigger that fires on INSERT operation on person table, which calculates the age and update that age in Person table.
 CREATE TRIGGER tr_CalculateAge
 ON PersonInfo
@@ -157,30 +156,26 @@ END;
 --8. Create a Trigger to Limit Salary Decrease by a 10%.
 CREATE TRIGGER tr_LimitSalaryDecrease
 ON PersonInfo
-INSTEAD OF UPDATE
+AFTER UPDATE
 AS
 BEGIN
     IF EXISTS (
         SELECT 1
         FROM inserted i
-        JOIN PersonInfo p ON i.PersonID = p.PersonID
-        WHERE i.Salary < p.Salary * 0.9
+        JOIN deleted d ON i.PersonID = d.PersonID
+        WHERE i.Salary < d.Salary * 0.9
     )
     BEGIN
         RAISERROR ('Salary decrease is limited to 10%.', 16, 1);
-        ROLLBACK TRANSACTION;
-    END
-    ELSE
-    BEGIN
-        UPDATE PersonInfo
-        SET PersonName = i.PersonName, Salary = i.Salary, JoiningDate = i.JoiningDate,
-            City = i.City, Age = i.Age, BirthDate = i.BirthDate
+        UPDATE p
+        SET p.Salary = d.Salary
         FROM PersonInfo p
-        JOIN inserted i ON p.PersonID = i.PersonID;
+        JOIN deleted d ON p.PersonID = d.PersonID
+        WHERE p.PersonID = d.PersonID;
     END
 END;
 
---Part ñ C
+--Part ‚Äì C
 --9. Create Trigger to Automatically Update JoiningDate to Current Date on INSERT if JoiningDate is NULL during an INSERT.
 CREATE TRIGGER tr_DefaultJoiningDate
 ON PersonInfo
@@ -192,7 +187,7 @@ BEGIN
     WHERE JoiningDate IS NULL AND PersonID IN (SELECT PersonID FROM inserted);
 END;
 
---10. Create DELETE trigger on PersonLog table, when we delete any record of PersonLog table it prints ëRecord deleted successfully from PersonLogí.
+--10. Create DELETE trigger on PersonLog table, when we delete any record of PersonLog table it prints ‚ÄòRecord deleted successfully from PersonLog‚Äô.
 CREATE TRIGGER tr_DeleteMessage
 ON PersonLog
 AFTER DELETE
