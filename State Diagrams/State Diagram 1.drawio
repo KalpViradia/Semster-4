@@ -1,0 +1,83 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
+  <diagram name="Page-1" id="fVihdi5gk1AiSFKxu9V8">
+    <mxGraphModel dx="1050" dy="557" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qmyh29uirlijndwORhbm-8" value="Loan" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" parent="1" vertex="1">
+          <mxGeometry x="160" y="80" width="400" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qmyh29uirlijndwORhbm-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="254.9999999999999" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-9" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="240" y="100" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="170" />
+              <mxPoint x="350" y="170" />
+            </Array>
+            <mxPoint x="293.9711431702997" y="169.9999999999999" as="sourcePoint" />
+            <mxPoint x="420.0288568297003" y="169.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="254.9999999999999" y="299.9999999999999" as="sourcePoint" />
+            <mxPoint x="255" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-21" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;Get pending details&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="310" y="150" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-23" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;Make repayment&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=90;" parent="1" vertex="1">
+          <mxGeometry x="210" y="238" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="smAKIJMm-CDCJqpn5u-L-8" target="smAKIJMm-CDCJqpn5u-L-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="418" y="190" as="sourcePoint" />
+            <mxPoint x="292" y="190" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-26" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;Send details&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="320" y="170" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.094;entryY=1.006;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="smAKIJMm-CDCJqpn5u-L-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="319.9999999999999" as="sourcePoint" />
+            <mxPoint x="433.6199999999999" y="195.60000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-30" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.742;exitY=0.922;exitDx=0;exitDy=0;entryX=0.056;entryY=0.156;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" parent="1" target="smAKIJMm-CDCJqpn5u-L-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="276.78" y="196.88" as="sourcePoint" />
+            <mxPoint x="427.1801948466052" y="305.85786437626905" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-31" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;Cancel loan&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=36;" parent="1" vertex="1">
+          <mxGeometry x="360" y="260" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qmyh29uirlijndwORhbm-32" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;Update repayment&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=-45;" parent="1" vertex="1">
+          <mxGeometry x="280" y="268" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="smAKIJMm-CDCJqpn5u-L-4" value="History / Details" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" parent="1" vertex="1">
+          <mxGeometry x="210" y="160" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="smAKIJMm-CDCJqpn5u-L-6" value="Repay" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" parent="1" vertex="1">
+          <mxGeometry x="210" y="298" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="smAKIJMm-CDCJqpn5u-L-7" value="Cacel" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" parent="1" vertex="1">
+          <mxGeometry x="420" y="298" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="smAKIJMm-CDCJqpn5u-L-8" value="Pending" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" parent="1" vertex="1">
+          <mxGeometry x="420" y="160" width="90" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
