@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer - Loan Repayment</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background-color: #0066cc;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      header .user-profile button {
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      /* Loan Summary */
+      .loan-summary {
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .loan-summary h2 {
+        margin-bottom: 20px;
+      }
+
+      .loan-summary p {
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      .loan-summary .overdue {
+        color: red;
+        font-weight: bold;
+      }
+
+      /* Repayment Options */
+      .repayment-options {
+        margin-top: 30px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .repayment-options button {
+        padding: 10px 20px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 10px 0;
+      }
+
+      .repayment-options .pay-emi {
+        background-color: #4caf50;
+      }
+
+      .repayment-options .pay-overdue {
+        background-color: #ff5733;
+      }
+
+      .repayment-options select,
+      .repayment-options input {
+        padding: 10px;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      /* Payment History */
+      .payment-history {
+        margin-top: 30px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .payment-history table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .payment-history th,
+      .payment-history td {
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+
+      .payment-history th {
+        background-color: #0066cc;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="logo">Loan Management</div>
+      <div class="user-profile">
+        <span>Welcome, John Doe</span>
+        <button>Logout</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Loan Summary Section -->
+      <div class="loan-summary">
+        <h2>Loan Summary</h2>
+        <p><strong>Loan Amount:</strong> $10,000</p>
+        <p><strong>Outstanding Balance:</strong> $4,500</p>
+        <p><strong>EMI Amount:</strong> $500</p>
+        <p><strong>Loan Type:</strong> Personal Loan</p>
+        <p><strong>Next Payment Due:</strong> 2025-02-10</p>
+        <p class="overdue"><strong>Overdue Amount:</strong> $500</p>
+      </div>
+
+      <!-- Repayment Action Section -->
+      <div class="repayment-options">
+        <h3>Make a Payment</h3>
+        <button class="pay-emi">Pay EMI Now</button>
+        <button class="pay-overdue">Pay Overdue Amount</button>
+        <input
+          type="number"
+          placeholder="Enter custom payment amount"
+          class="custom-payment"
+        />
+        <p>Amount to Pay: $4,500</p>
+
+        <h4>Select Payment Method:</h4>
+        <select>
+          <option value="card">Credit/Debit Card</option>
+          <option value="bank">Net Banking</option>
+          <option value="upi">UPI</option>
+          <option value="wallet">Wallet</option>
+        </select>
+        <button class="pay-btn">Pay Now</button>
+      </div>
+
+      <!-- Payment History Section -->
+      <div class="payment-history">
+        <h3>Payment History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-01-10</td>
+              <td>$500</td>
+              <td>Success</td>
+              <td>Card</td>
+            </tr>
+            <tr>
+              <td>2024-12-10</td>
+              <td>$500</td>
+              <td>Success</td>
+              <td>UPI</td>
+            </tr>
+            <!-- More rows here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Payment Confirmation -->
+      <div class="payment-confirmation">
+        <p>Payment Processing... Please wait...</p>
+      </div>
+    </div>
+  </body>
+</html>

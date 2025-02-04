@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Loan Product</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container to center the form and give some spacing */
+.container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h1, h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form elements styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-top: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+/* Buttons styling */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button[type="button"] {
+  background-color: #f0ad4e;
+}
+
+button[type="button"]:hover {
+  background-color: #ec971f;
+}
+
+/* Section header styles */
+h2 {
+  font-size: 20px;
+  color: #444;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Spacing for inputs and labels */
+input, select, textarea {
+  margin-bottom: 20px;
+}
+
+form > .container > h1 {
+  text-align: center;
+}
+
+/* Responsive styling for mobile devices */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Add New Loan Product</h1>
+    <form action="/submit-loan-product" method="POST">
+      
+      <!-- Basic Information Section -->
+      <h2>Basic Information</h2>
+      <label for="loan-name">Loan Product Name *</label>
+      <input type="text" id="loan-name" name="loan_name" required>
+
+      <label for="loan-type">Loan Type *</label>
+      <select id="loan-type" name="loan_type" required>
+        <option value="secured">Secured</option>
+        <option value="unsecured">Unsecured</option>
+        <option value="student">Student Loan</option>
+      </select>
+
+      <label for="loan-description">Loan Description</label>
+      <textarea id="loan-description" name="loan_description"></textarea>
+
+      <!-- Loan Amount Details Section -->
+      <h2>Loan Amount Details</h2>
+      <label for="min-amount">Min Loan Amount *</label>
+      <input type="number" id="min-amount" name="min_amount" required>
+
+      <label for="max-amount">Max Loan Amount *</label>
+      <input type="number" id="max-amount" name="max_amount" required>
+
+      <label for="interest-rate">Interest Rate (%) *</label>
+      <input type="number" id="interest-rate" name="interest_rate" required>
+
+      <label for="repayment-term">Repayment Term *</label>
+      <select id="repayment-term" name="repayment_term" required>
+        <option value="1_year">1 Year</option>
+        <option value="2_years">2 Years</option>
+        <option value="5_years">5 Years</option>
+      </select>
+
+      <!-- Eligibility Criteria Section -->
+      <h2>Eligibility Criteria</h2>
+      <label for="min-age">Min Age *</label>
+      <input type="number" id="min-age" name="min_age" required>
+
+      <label for="max-age">Max Age *</label>
+      <input type="number" id="max-age" name="max_age" required>
+
+      <label for="credit-score">Credit Score Requirement</label>
+      <input type="number" id="credit-score" name="credit_score">
+
+      <label for="employment-type">Employment Type</label>
+      <select id="employment-type" name="employment_type">
+        <option value="full-time">Full-time</option>
+        <option value="part-time">Part-time</option>
+        <option value="self-employed">Self-employed</option>
+      </select>
+
+      <!-- Loan Fees and Charges Section -->
+      <h2>Loan Fees and Charges</h2>
+      <label for="processing-fee">Processing Fee</label>
+      <input type="number" id="processing-fee" name="processing_fee">
+
+      <label for="late-payment-fee">Late Payment Fee</label>
+      <input type="number" id="late-payment-fee" name="late_payment_fee">
+
+      <label for="prepayment-penalty">Prepayment Penalty</label>
+      <input type="number" id="prepayment-penalty" name="prepayment_penalty">
+
+      <!-- Payment Terms Section -->
+      <h2>Payment Terms</h2>
+      <label for="repayment-frequency">Repayment Frequency *</label>
+      <select id="repayment-frequency" name="repayment_frequency" required>
+        <option value="monthly">Monthly</option>
+        <option value="quarterly">Quarterly</option>
+      </select>
+
+      <label for="grace-period">Grace Period (Days)</label>
+      <input type="number" id="grace-period" name="grace_period">
+
+      <!-- Additional Features -->
+      <h2>Additional Features</h2>
+      <label for="loan-insurance">Loan Insurance Available</label>
+      <input type="checkbox" id="loan-insurance" name="loan_insurance">
+
+      <label for="collateral-required">Collateral Requirement</label>
+      <input type="checkbox" id="collateral-required" name="collateral_required">
+
+      <!-- Buttons -->
+      <button type="submit">Save</button>
+      <button type="button" onclick="window.history.back();">Cancel</button>
+      
+    </form>
+  </div>
+</body>
+</html>

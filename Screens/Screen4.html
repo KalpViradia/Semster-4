@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan History | Loan Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            max-width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .history-table th, .history-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        .history-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .history-table td {
+            background-color: #f9f9f9;
+        }
+        .status-pending {
+            color: orange;
+            font-weight: bold;
+        }
+        .status-approved {
+            color: green;
+            font-weight: bold;
+        }
+        .status-rejected {
+            color: red;
+            font-weight: bold;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-group button, .filter-group select {
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .button-group button:hover, .filter-group select:hover {
+            background-color: #0056b3;
+        }
+        .back-link, .filter-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .filter-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .filter-group select {
+            width: 150px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Loan History</h2>
+
+        <!-- Filter Section -->
+        <div class="filter-group">
+            <select id="status-filter" onchange="filterLoans()">
+                <option value="all">All Status</option>
+                <option value="approved">Approved</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <button onclick="resetFilter()">Reset Filter</button>
+        </div>
+
+        <!-- Loan History Table -->
+        <table class="history-table" id="loan-history-table">
+            <thead>
+                <tr>
+                    <th>Loan Type</th>
+                    <th>Loan Amount</th>
+                    <th>Status</th>
+                    <th>Date Applied</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="approved">
+                    <td>Home Loan</td>
+                    <td>$100,000</td>
+                    <td class="status-approved">Approved</td>
+                    <td>2024-01-15</td>
+                    <td><button onclick="viewDetails('Home Loan')">View Details</button></td>
+                </tr>
+                <tr class="pending">
+                    <td>Car Loan</td>
+                    <td>$30,000</td>
+                    <td class="status-pending">Pending</td>
+                    <td>2024-02-10</td>
+                    <td><button onclick="viewDetails('Car Loan')">View Details</button></td>
+                </tr>
+                <tr class="rejected">
+                    <td>Education Loan</td>
+                    <td>$20,000</td>
+                    <td class="status-rejected">Rejected</td>
+                    <td>2024-03-05</td>
+                    <td><button onclick="viewDetails('Education Loan')">View Details</button></td>
+                </tr>
+                <tr class="approved">
+                    <td>Personal Loan</td>
+                    <td>$10,000</td>
+                    <td class="status-approved">Approved</td>
+                    <td>2024-04-01</td>
+                    <td><button onclick="viewDetails('Personal Loan')">View Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pagination / Load More Button -->
+        <div class="button-group">
+            <button onclick="loadMoreLoans()">Load More</button>
+            <button onclick="goBack()">Back to Dashboard</button>
+        </div>
+
+        <!-- Back to Dashboard Link -->
+        <div class="back-link">
+            <p><a href="loan_status.html">Back to Loan Status</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Filter Loans based on Status
+        function filterLoans() {
+            const filterValue = document.getElementById('status-filter').value;
+            const rows = document.querySelectorAll('#loan-history-table tbody tr');
+            
+            rows.forEach(row => {
+                const status = row.querySelector('td.status-approved, td.status-pending, td.status-rejected').textContent.toLowerCase();
+                if (filterValue === 'all' || status.includes(filterValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Reset the filter
+        function resetFilter() {
+            document.getElementById('status-filter').value = 'all';
+            filterLoans();
+        }
+
+        // View Details for a Loan
+        function viewDetails(loanType) {
+            alert(`Viewing details for the ${loanType}`);
+            // You can redirect to a detailed page or show more information in a modal
+        }
+
+        // Load More Loans (for demonstration, it adds more rows to the table)
+        function loadMoreLoans() {
+            const tableBody = document.querySelector('#loan-history-table tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>New Loan</td>
+                <td>$15,000</td>
+                <td class="status-pending">Pending</td>
+                <td>2024-05-12</td>
+                <td><button onclick="viewDetails('New Loan')">View Details</button></td>
+            `;
+            tableBody.appendChild(newRow);
+        }
+
+        // Go back to the dashboard
+        function goBack() {
+            window.location.href = 'dashboard.html'; // Assuming the dashboard URL is dashboard.html
+        }
+    </script>
+</body>
+</html>

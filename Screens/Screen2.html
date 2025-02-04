@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Loan | Loan Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="password"], select, input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Apply for a Loan</h2>
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter Username" required>
+        </div>
+        <div class="input-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" placeholder="Enter Your Address" required>
+        </div>
+        <div class="input-group">
+            <label for="loan-type">Loan Type:</label>
+            <select id="loan-type" required>
+                <option value="" disabled selected>Select Loan Type</option>
+                <option value="Personal">Personal</option>
+                <option value="Home">Home</option>
+                <option value="Car">Car</option>
+                <option value="Education">Education</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="amount">Loan Amount:</label>
+            <input type="number" id="amount" placeholder="Enter Loan Amount" required>
+        </div>
+        <div class="input-group">
+            <label for="repayment-date">Repayment End Date:</label>
+            <input type="date" id="repayment-date" required>
+        </div>
+        <div class="input-group">
+            <label>Payment Method:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="credit-card" name="payment-method" value="Credit Card">
+                <label for="credit-card">Credit Card</label>
+                <input type="checkbox" id="debit-card" name="payment-method" value="Debit Card">
+                <label for="debit-card">Debit Card</label>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="cvv">CVV (for card payments):</label>
+            <input type="password" id="cvv" placeholder="Enter CVV" required>
+        </div>
+        <button onclick="applyForLoan()">Submit</button>
+    </div>
+
+    <script>
+        // Function to calculate months between two dates
+        function calculateRepaymentTime() {
+            let startDate = new Date(); // Current date
+            let endDate = new Date(document.getElementById("repayment-date").value);
+            let timeDifference = endDate - startDate;
+            let months = timeDifference / (1000 * 3600 * 24 * 30); // Convert to months
+            return Math.ceil(months); // Round up to the nearest month
+        }
+
+        function applyForLoan() {
+            let repaymentTime = calculateRepaymentTime();
+            alert("Your loan repayment time is: " + repaymentTime + " months.");
+            // You can submit this value to the backend along with other form data
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Loan Applications</title>
+  <style>
+    /* General reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container styling */
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f1f1f1;
+      font-weight: bold;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    .status {
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .status.pending {
+      background-color: #ffcc00;
+      color: #fff;
+    }
+
+    .status.approved {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .status.rejected {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    /* Action buttons */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .approve-button {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .reject-button {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .view-button {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .search-filter {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .search-filter input, .search-filter select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Pagination styles */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      padding: 10px;
+      margin: 0 5px;
+      text-decoration: none;
+      color: #007bff;
+      border-radius: 5px;
+      border: 1px solid #007bff;
+    }
+
+    .pagination a:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .pagination .active {
+      background-color: #007bff;
+      color: white;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Review Loan Applications</h1>
+
+    <!-- Search and Filter Section -->
+    <div class="search-filter">
+      <input type="text" id="search" placeholder="Search by applicant name..." />
+      <select id="status-filter">
+        <option value="">Filter by Status</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+      <button onclick="searchLoans()">Search</button>
+    </div>
+
+    <!-- Loan Applications Table -->
+    <table id="loan-table">
+      <thead>
+        <tr>
+          <th>Applicant Name</th>
+          <th>Loan Amount</th>
+          <th>Loan Type</th>
+          <th>Status</th>
+          <th>Date Applied</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic rows will be inserted here by JavaScript -->
+      </tbody>
+    </table>
+
+    <!-- Pagination Section -->
+    <div class="pagination">
+      <a href="#" class="prev">Previous</a>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#" class="next">Next</a>
+    </div>
+  </div>
+
+  <script>
+    // Sample loan application data (in a real system, data would come from a database)
+    const loanApplications = [
+      { id: 1, name: 'John Doe', amount: 5000, type: 'Personal Loan', status: 'pending', date: '2025-01-15' },
+      { id: 2, name: 'Jane Smith', amount: 15000, type: 'Home Loan', status: 'approved', date: '2025-01-10' },
+      { id: 3, name: 'Mark Lee', amount: 7000, type: 'Auto Loan', status: 'rejected', date: '2025-01-12' },
+      { id: 4, name: 'Emily Davis', amount: 20000, type: 'Home Loan', status: 'pending', date: '2025-01-14' },
+      { id: 5, name: 'Michael Brown', amount: 8000, type: 'Personal Loan', status: 'approved', date: '2025-01-13' },
+    ];
+
+    const loanTableBody = document.querySelector("#loan-table tbody");
+    
+    function renderTable(data) {
+      loanTableBody.innerHTML = ''; // Clear the table before rendering new rows
+      data.forEach(loan => {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+          <td>${loan.name}</td>
+          <td>${loan.amount}</td>
+          <td>${loan.type}</td>
+          <td><span class="status ${loan.status}">${loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}</span></td>
+          <td>${loan.date}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="view-button" onclick="viewLoan(${loan.id})">View</button>
+              ${loan.status === 'pending' ? `
+                <button class="approve-button" onclick="approveLoan(${loan.id})">Approve</button>
+                <button class="reject-button" onclick="rejectLoan(${loan.id})">Reject</button>
+              ` : ''}
+            </div>
+          </td>
+        `;
+        
+        loanTableBody.appendChild(row);
+      });
+    }
+
+    function viewLoan(id) {
+      alert(`View details of loan #${id}`);
+    }
+
+    function approveLoan(id) {
+      const loan = loanApplications.find(l => l.id === id);
+      loan.status = 'approved';
+      renderTable(loanApplications);
+    }
+
+    function rejectLoan(id) {
+      const loan = loanApplications.find(l => l.id === id);
+      loan.status = 'rejected';
+      renderTable(loanApplications);
+    }
+
+    function searchLoans() {
+      const searchQuery = document.getElementById('search').value.toLowerCase();
+      const statusFilter = document.getElementById('status-filter').value;
+      
+      const filteredLoans = loanApplications.filter(loan => {
+        const matchesSearch = loan.name.toLowerCase().includes(searchQuery);
+        const matchesStatus = statusFilter ? loan.status === statusFilter : true;
+        return matchesSearch && matchesStatus;
+      });
+      
+      renderTable(filteredLoans);
+    }
+
+    // Initial render of all loan applications
+    renderTable(loanApplications);
+  </script>
+
+</body>
+</html>

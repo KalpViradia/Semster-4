@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Status | Loan Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: left;
+        }
+        h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .status-table th, .status-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .status-table th {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+        }
+        .status-table td {
+            background-color: #f9f9f9;
+            font-size: 16px;
+            color: #555;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-group button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 48%;
+        }
+        .button-group button:hover {
+            background-color: #0056b3;
+        }
+        .button-group .secondary-btn {
+            background-color: #28a745;
+        }
+        .button-group .secondary-btn:hover {
+            background-color: #218838;
+        }
+        .progress-bar-container {
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 8px;
+            height: 20px;
+        }
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            background-color: #28a745;
+            border-radius: 8px;
+        }
+        .notifications {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #856404;
+            font-size: 16px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Loan Status</h2>
+
+        <!-- Loan Information Table -->
+        <table class="status-table">
+            <tr>
+                <th>Username</th>
+                <td id="username">JohnDoe123</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td id="address">123 Main Street, City, Country</td>
+            </tr>
+            <tr>
+                <th>Loan Type</th>
+                <td id="loan-type">Home Loan</td>
+            </tr>
+            <tr>
+                <th>Loan Amount</th>
+                <td id="loan-amount">$50,000</td>
+            </tr>
+            <tr>
+                <th>Outstanding Amount</th>
+                <td id="outstanding-amount">$30,000</td>
+            </tr>
+            <tr>
+                <th>Interest Rate</th>
+                <td id="interest-rate">4.5%</td>
+            </tr>
+            <tr>
+                <th>Loan Approval Date</th>
+                <td id="approval-date">2024-05-10</td>
+            </tr>
+            <tr>
+                <th>Time to Repay (months)</th>
+                <td id="repayment-time">36 months</td>
+            </tr>
+            <tr>
+                <th>Remaining Repayment Period</th>
+                <td id="remaining-repayment">18 months</td>
+            </tr>
+            <tr>
+                <th>Monthly Repayment</th>
+                <td id="monthly-repayment">$833.33</td>
+            </tr>
+            <tr>
+                <th>Total Paid</th>
+                <td id="total-paid">$20,000</td>
+            </tr>
+            <tr>
+                <th>Payment Method</th>
+                <td id="payment-method">Credit Card</td>
+            </tr>
+            <tr>
+                <th>Next Payment Due Date</th>
+                <td id="next-payment-date">2025-02-01</td>
+            </tr>
+            <tr>
+                <th>Last Payment Amount</th>
+                <td id="last-payment-amount">$1,500</td>
+            </tr>
+        </table>
+
+        <!-- Loan Progress Bar -->
+        <div class="progress-bar-container">
+            <p><strong>Loan Progress:</strong></p>
+            <div class="progress-bar">
+                <span style="width: 60%"></span>
+            </div>
+            <p>60% of the loan has been paid off.</p>
+        </div>
+
+        <!-- Notifications -->
+        <div class="notifications">
+            <p><strong>Important:</strong> Your next payment is due on <strong>2025-02-01</strong>. Please ensure the payment is made on time to avoid penalties.</p>
+        </div>
+
+        <!-- Button Group -->
+        <div class="button-group">
+            <button class="secondary-btn" onclick="makePayment()">Make a Payment</button>
+            <button onclick="downloadStatement()">Download Statement</button>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <button onclick="goBack()">Back to Dashboard</button>
+            <p><a href="#">Go to Loan History</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Go back to the previous page or dashboard
+        function goBack() {
+            window.history.back();
+        }
+
+        // Example function to make a payment
+        function makePayment() {
+            alert("Redirecting to payment gateway...");
+            // Code to redirect to the payment gateway or form
+        }
+
+        // Example function to download loan statement
+        function downloadStatement() {
+            alert("Downloading loan statement...");
+            // Code to generate and download PDF/CSV file
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Loan Management System</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background-color: #0066cc;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        align-items: center;
+      }
+
+      header .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      header .user-profile {
+        display: flex;
+        align-items: center;
+      }
+
+      header .user-profile span {
+        margin-right: 10px;
+      }
+
+      header .user-profile button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      /* Container for content */
+      .container {
+        padding: 20px;
+      }
+
+      .search-bar {
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      .search-bar input {
+        padding: 10px;
+        width: 300px;
+        margin-right: 10px;
+      }
+
+      .search-bar button {
+        padding: 10px 20px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .filters {
+        margin-bottom: 20px;
+      }
+
+      .filters select {
+        padding: 10px;
+        margin-right: 10px;
+      }
+
+      /* Customer List */
+      .customer-list table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      .customer-list th,
+      .customer-list td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+
+      .customer-list th {
+        background-color: #0066cc;
+        color: white;
+      }
+
+      .customer-list .edit-btn,
+      .customer-list .view-btn {
+        padding: 5px 10px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .customer-list .edit-btn {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .customer-list .view-btn {
+        background-color: #008cba;
+        color: white;
+      }
+
+      /* Customer Profile Section */
+      .customer-profile {
+        margin-top: 30px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .customer-profile h2 {
+        margin-bottom: 20px;
+      }
+
+      .profile-section {
+        display: flex;
+        gap: 30px;
+      }
+
+      .profile-info {
+        flex: 1;
+      }
+
+      .profile-info input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .save-btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .loan-history {
+        flex: 2;
+      }
+
+      .loan-history table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .loan-history th,
+      .loan-history td {
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+
+      .loan-history th {
+        background-color: #0066cc;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="logo">Loan Management</div>
+      <div class="user-profile">
+        <span>Admin</span>
+        <button>Logout</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Search & Filter Section -->
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Search by Customer Name, ID, or Loan Number"
+        />
+        <button class="search-btn">Search</button>
+      </div>
+
+      <div class="filters">
+        <select>
+          <option value="">Filter by Loan Status</option>
+          <option value="active">Active</option>
+          <option value="closed">Closed</option>
+          <option value="pending">Pending</option>
+        </select>
+        <select>
+          <option value="">Filter by Loan Type</option>
+          <option value="personal">Personal</option>
+          <option value="auto">Auto</option>
+          <option value="home">Home</option>
+        </select>
+        <select>
+          <option value="">Filter by Customer Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Customer List Section -->
+      <div class="customer-list">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Loan Type</th>
+              <th>Loan Amount</th>
+              <th>Loan Status</th>
+              <th>Last Loan Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12345</td>
+              <td>John Doe</td>
+              <td>+1 234 567 890</td>
+              <td>johndoe@example.com</td>
+              <td>Personal</td>
+              <td>$5000</td>
+              <td>Active</td>
+              <td>2025-01-10</td>
+              <td>
+                <button class="edit-btn">Edit</button>
+                <button class="view-btn">View</button>
+              </td>
+            </tr>
+            <!-- Additional rows can go here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Customer Profile Modal -->
+      <div class="customer-profile">
+        <h2>Customer Profile: John Doe</h2>
+        <div class="profile-section">
+          <div class="profile-info">
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="John Doe" />
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" value="+1 234 567 890" />
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" value="johndoe@example.com" />
+
+            <label for="loan-type">Loan Type:</label>
+            <input type="text" id="loan-type" value="Personal" />
+
+            <label for="loan-amount">Loan Amount:</label>
+            <input type="text" id="loan-amount" value="$5000" />
+
+            <label for="loan-status">Loan Status:</label>
+            <input type="text" id="loan-status" value="Active" />
+
+            <button class="save-btn">Save Changes</button>
+          </div>
+
+          <div class="loan-history">
+            <h3>Loan History</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Loan Type</th>
+                  <th>Loan Amount</th>
+                  <th>Status</th>
+                  <th>Start Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Personal</td>
+                  <td>$5000</td>
+                  <td>Active</td>
+                  <td>2025-01-10</td>
+                </tr>
+                <!-- More loan history rows can be added -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

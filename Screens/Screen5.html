@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | User Management | Loan Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding-top: 30px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 900px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .user-table th, .user-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        .user-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .user-table td {
+            background-color: #f9f9f9;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .action-buttons button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .approve-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .reject-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .view-btn {
+            background-color: #007BFF;
+            color: white;
+        }
+        .action-buttons button:hover {
+            opacity: 0.8;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Management</h2>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by username..." />
+            <button onclick="searchUsers()">Search</button>
+        </div>
+
+        <!-- Users Table -->
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Loan Type</th>
+                    <th>Loan Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example of User Data (Static) -->
+                <tr>
+                    <td>JohnDoe123</td>
+                    <td>johndoe@email.com</td>
+                    <td>Home Loan</td>
+                    <td>$50,000</td>
+                    <td>Pending</td>
+                    <td class="action-buttons">
+                        <button class="view-btn" onclick="viewUser('JohnDoe123')">View</button>
+                        <button class="approve-btn" onclick="approveLoan('JohnDoe123')">Approve</button>
+                        <button class="reject-btn" onclick="rejectLoan('JohnDoe123')">Reject</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AliceSmith</td>
+                    <td>alicesmith@email.com</td>
+                    <td>Car Loan</td>
+                    <td>$20,000</td>
+                    <td>Approved</td>
+                    <td class="action-buttons">
+                        <button class="view-btn" onclick="viewUser('AliceSmith')">View</button>
+                        <button class="approve-btn" onclick="approveLoan('AliceSmith')">Approve</button>
+                        <button class="reject-btn" onclick="rejectLoan('AliceSmith')">Reject</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BobJohnson</td>
+                    <td>bobjohnson@email.com</td>
+                    <td>Education Loan</td>
+                    <td>$15,000</td>
+                    <td>Rejected</td>
+                    <td class="action-buttons">
+                        <button class="view-btn" onclick="viewUser('BobJohnson')">View</button>
+                        <button class="approve-btn" onclick="approveLoan('BobJohnson')">Approve</button>
+                        <button class="reject-btn" onclick="rejectLoan('BobJohnson')">Reject</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to view a user's details (navigate to a user details page)
+        function viewUser(username) {
+            alert("Viewing details for " + username);
+            // In a real application, you would redirect to a detailed user view page
+            window.location.href = 'user_details.html?username=' + username;
+        }
+
+        // Function to approve a loan
+        function approveLoan(username) {
+            alert("Loan approved for " + username);
+            // Logic to approve the loan in the back-end should be placed here
+        }
+
+        // Function to reject a loan
+        function rejectLoan(username) {
+            alert("Loan rejected for " + username);
+            // Logic to reject the loan in the back-end should be placed here
+        }
+
+        // Search functionality (filter users based on the username input)
+        function searchUsers() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let table = document.querySelector('.user-table tbody');
+            let rows = table.getElementsByTagName('tr');
+            
+            Array.from(rows).forEach(row => {
+                let usernameCell = row.cells[0].textContent.toLowerCase();
+                if (usernameCell.indexOf(input) === -1) {
+                    row.style.display = 'none';
+                } else {
+                    row.style.display = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
