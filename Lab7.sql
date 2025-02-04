@@ -13,10 +13,10 @@ CREATE TABLE Orders (
 );
 
 --From the above given tables perform the following queries:
---Part ñ A
+--Part ‚Äì A
 --1. Handle Divide by Zero Error and Print message like: Error occurs that is - Divide by zero error.
 BEGIN TRY
-    DECLARE @a INT = 10, @b INT = 0, @result FLOAT;
+    DECLARE @a INT = 10, @b INT = 0, @result DECIMAL(8, 2);
     SET @result = @a / @b;
     PRINT @result;
 END TRY
@@ -24,7 +24,7 @@ BEGIN CATCH
     PRINT 'Error occurs that is - Divide by zero error.';
 END CATCH;
 
---2. Try to convert string to integer and handle the error using tryÖcatch block.
+--2. Try to convert string to integer and handle the error using try‚Ä¶catch block.
 BEGIN TRY
     DECLARE @stringValue VARCHAR(50) = 'Invalid123';
     DECLARE @integerValue INT;
@@ -36,7 +36,7 @@ BEGIN CATCH
 END CATCH;
 
 --3. Create a procedure that prints the sum of two numbers: take both numbers as integer & handle exception with all error functions if any one enters string value in numbers otherwise print result.
-CREATE PROCEDURE SP_SumNumbers
+CREATE OR ALTER PROCEDURE SP_SumNumbers
 @num1 VARCHAR(50), @num2 VARCHAR(50)
 AS
 BEGIN
@@ -69,7 +69,7 @@ BEGIN CATCH
 END CATCH;
 
 --5. Throw custom exception using stored procedure which accepts Customer_id as input & that throws Error like no Customer_id is available in database.
-CREATE PROCEDURE SP_CheckCustomerID
+CREATE OR ALTER PROCEDURE SP_CheckCustomerID
 @Customer_id INT
 AS
 BEGIN
@@ -87,7 +87,7 @@ END;
 
 EXEC SP_CheckCustomerID 1
 EXEC SP_CheckCustomerID 2
---Part ñ B
+--Part ‚Äì B
 --6. Handle a Foreign Key Violation while inserting data into Orders table and print appropriate error message.
 BEGIN TRY
     INSERT INTO Orders (Order_id, Customer_id, Order_date)
@@ -116,7 +116,7 @@ END;
 EXEC SP_ValidateData ''
 EXEC SP_ValidateData 'Rahul'
 
---8. Create a Procedure to Update Customerís Email with Error Handling.
+--8. Create a Procedure to Update Customer‚Äôs Email with Error Handling.
 CREATE PROCEDURE SP_UpdateCustomerEmail
 @Customer_id INT, @Email VARCHAR(50)
 AS
@@ -136,8 +136,8 @@ END;
 EXEC SP_UpdateCustomerEmail 1, 'rahul@gmail.com'
 EXEC SP_UpdateCustomerEmail 2, 'hardik@gmail.com'
 
---Part ñ C
---9. Create a procedure which prints the error message that ìThe Customer_id is already taken. Try another oneî.
+--Part ‚Äì C
+--9. Create a procedure which prints the error message that ‚ÄúThe Customer_id is already taken. Try another one‚Äù.
 CREATE PROCEDURE SP_InsertCustomer
 @Customer_id INT, @Customer_Name VARCHAR(250), @Email VARCHAR(50)
 AS
