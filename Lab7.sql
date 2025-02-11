@@ -13,6 +13,7 @@ CREATE TABLE Orders (
 );
 
 --From the above given tables perform the following queries:
+
 --Part – A
 --1. Handle Divide by Zero Error and Print message like: Error occurs that is - Divide by zero error.
 BEGIN TRY
@@ -87,6 +88,7 @@ END;
 
 EXEC SP_CheckCustomerID 1
 EXEC SP_CheckCustomerID 2
+
 --Part – B
 --6. Handle a Foreign Key Violation while inserting data into Orders table and print appropriate error message.
 BEGIN TRY
@@ -99,7 +101,7 @@ BEGIN CATCH
 END CATCH;
 
 --7. Throw custom exception that throws error if the data is invalid.
-CREATE PROCEDURE SP_ValidateData
+CREATE OR ALTER PROCEDURE SP_ValidateData
 @CustomerName VARCHAR(250)
 AS
 BEGIN
@@ -117,7 +119,7 @@ EXEC SP_ValidateData ''
 EXEC SP_ValidateData 'Rahul'
 
 --8. Create a Procedure to Update Customer’s Email with Error Handling.
-CREATE PROCEDURE SP_UpdateCustomerEmail
+CREATE OR ALTER PROCEDURE SP_UpdateCustomerEmail
 @Customer_id INT, @Email VARCHAR(50)
 AS
 BEGIN
@@ -138,7 +140,7 @@ EXEC SP_UpdateCustomerEmail 2, 'hardik@gmail.com'
 
 --Part – C
 --9. Create a procedure which prints the error message that “The Customer_id is already taken. Try another one”.
-CREATE PROCEDURE SP_InsertCustomer
+CREATE OR ALTER PROCEDURE SP_InsertCustomer
 @Customer_id INT, @Customer_Name VARCHAR(250), @Email VARCHAR(50)
 AS
 BEGIN
